@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <title>سبد خرید | باطنو</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="سبد خرید شما در باطنو؛ محصولات را بررسی کنید و رسید پرداخت خود را برای پشتیبانی ارسال کنید.">
+
+  <link rel="stylesheet" type="text/css" href="./assets/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <style>
+    .qty-stepper{ display:flex; align-items:center; gap:.5rem; }
+    .qty-stepper button{ width:30px; height:30px; border-radius:8px; border:1px solid #e2e2da; background:#fff; line-height:1; font-weight:700; color: var(--batenno-primary-dark); }
+    .qty-stepper button:hover{ background: var(--batenno-cream); }
+    .cart-row{ border-bottom:1px solid #eee; }
+    .cart-row:last-child{ border-bottom:none; }
+    .bank-card-box{ background: linear-gradient(135deg, var(--batenno-primary-dark), var(--batenno-primary)); color:#fff; border-radius:16px; padding:1.25rem 1.5rem; }
+    .bank-card-number{ letter-spacing:2px; font-size:1.15rem; font-weight:700; direction:ltr; text-align:center; }
+    .upload-box{ border:1.5px dashed #cfcfc5; border-radius:14px; padding:1.5rem; text-align:center; background: var(--batenno-cream); cursor:pointer; }
+    .upload-box:hover{ border-color: var(--batenno-primary); }
+    .receipt-preview{ max-height:160px; border-radius:10px; }
+    /* .batenno-card has height:100% globally (for equal-height single-card grids
+       elsewhere on the site). Here the right column stacks TWO cards on top of
+       each other, so height:100% makes each one try to fill the whole column
+       and the payment card overflows down into the footer. Reset it here. */
+    .col-lg-5 .batenno-card{ height: auto; }
+  </style>
+</head>
+
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <defs>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="telegram" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05l-2 1.93c-.23.23-.42.42-.82.42"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="email" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4m10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4M7.2 14h9.6a2 2 0 0 0 1.94-1.51l1.65-6.6A1 1 0 0 0 19.42 4H6.21l-.3-1.2A1 1 0 0 0 4.94 2H2v2h2.2l3.02 12.06A1 1 0 0 0 8.19 17h10.3v-2H8.42z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="trash" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M9 3a1 1 0 0 0-1 1v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7h1V5h-4V4a1 1 0 0 0-1-1zm0 6h2v9H9zm4 0h2v9h-2z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="upload" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M5 20h14v-2H5zM12 2 6.5 7.5l1.42 1.42L11 5.83V16h2V5.83l3.08 3.09L17.5 7.5z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="copy" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m0 16H8V7h11z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="check-circle" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m-1.2 14.6-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg batenno-navbar sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand" href="./index.html">
+      <img src="./assets/images/logo.png" alt="باطنو">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="./index.html">خانه</a></li>
+        <li class="nav-item"><a class="nav-link" href="./shop.html">فروشگاه</a></li>
+        <li class="nav-item"><a class="nav-link" href="./custom-basket.html">سبد نیمه‌سفارشی</a></li>
+        <li class="nav-item"><a class="nav-link" href="./subscription.html">اشتراک میوه</a></li>
+        <li class="nav-item"><a class="nav-link" href="./b2b.html">مشتریان سازمانی</a></li>
+        <li class="nav-item"><a class="nav-link" href="./about-fa.html">داستان باطنو</a></li>
+        <li class="nav-item"><a class="nav-link" href="./faq.html">سوالات متداول</a></li>
+        <li class="nav-item mt-2 mt-lg-0">
+          <a href="./cart.html" class="btn btn-primary position-relative d-inline-flex align-items-center justify-content-center" style="width:42px;height:42px;padding:0;" aria-label="سبد خرید">
+            <svg width="18" height="18"><use xlink:href="#cart"></use></svg>
+            <span data-cart-badge class="position-absolute badge rounded-pill" style="top:-6px; left:-6px; display:none; background: #F5A623; color:#18392B;">0</span>
+          </a>
+        </li>
+        <li class="nav-item mt-2 mt-lg-0" data-auth-slot>
+          <a href="./auth.html" class="btn btn-primary">ورود / ثبت‌نام</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="batenno-faq-hero">
+  <div class="container">
+    <h1 class="display-6 fw-bold mb-2">سبد خرید شما</h1>
+    <p class="mb-0" style="color: rgba(255,255,255,0.9);">پیش از پرداخت، سفارش خود را یک‌بار دیگر بررسی کنید</p>
+  </div>
+</section>
+
+<section class="py-5 bg-batenno-soft">
+  <div class="container">
+
+    <!-- Empty state -->
+    <div id="emptyCart" class="batenno-card text-center py-5" style="display:none;">
+      <div class="mb-3" style="font-size:3rem;">🧺</div>
+      <h5 class="fw-bold mb-2">سبد خرید شما خالی است</h5>
+      <p class="text-muted mb-4">هنوز چیزی به سبد خود اضافه نکرده‌اید. سری به فروشگاه بزنید!</p>
+      <a href="./shop.html" class="btn btn-primary px-4">رفتن به فروشگاه</a>
+    </div>
+
+    <div id="cartContent" class="row g-4" style="display:none;">
+
+      <!-- Cart items -->
+      <div class="col-lg-7">
+        <div class="batenno-card">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">اقلام سبد خرید</h5>
+            <button id="clearCartBtn" type="button" class="btn btn-sm btn-outline-danger">خالی کردن سبد</button>
+          </div>
+          <div id="cartItems"></div>
+        </div>
+      </div>
+
+      <!-- Summary + payment -->
+      <div class="col-lg-5">
+        <div class="batenno-card mb-4">
+          <h5 class="fw-bold mb-3">خلاصه سفارش</h5>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">جمع کالاها</span>
+            <span id="sumSubtotal" class="fw-semibold">۰ تومان</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">هزینه ارسال</span>
+            <span id="sumShipping" class="fw-semibold">۰ تومان</span>
+          </div>
+          <p class="small text-muted mb-3">ارسال برای خریدهای بالای ۵۰۰,۰۰۰ تومان رایگان است.</p>
+          <hr>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-bold">مبلغ قابل پرداخت</span>
+            <span id="sumTotal" class="fw-bold fs-5" style="color: var(--batenno-primary-dark);">۰ تومان</span>
+          </div>
+        </div>
+
+        <!-- Payment: card-to-card + receipt to support -->
+        <div class="batenno-card">
+          <h5 class="fw-bold mb-1">روش پرداخت</h5>
+          <p class="text-muted small mb-3">
+            پرداخت باطنو فعلاً به‌صورت کارت‌به‌کارت انجام می‌شه. مبلغ رو به کارت زیر واریز کن، عکس یا اسکرین‌شاتِ رسید رو آپلود کن و اطلاعات سفارشت رو ثبت کن؛ تیم پشتیبانی رسید رو بررسی می‌کنه و سفارش رو برات نهایی می‌کنه.
+          </p>
+
+          <div class="bank-card-box mb-3">
+            <div class="small mb-2" style="opacity:.85;">به نام: شرکت توسعه تجارت باطِنو</div>
+            <div class="bank-card-number mb-2">۶۰۳۷-۹۹۱۲-۰۰۰۱-۱۲۳۴</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="small" style="opacity:.85;">بانک ملت</span>
+              <button type="button" id="copyCardBtn" class="btn btn-sm btn-light d-flex align-items-center gap-1">
+                <svg width="14" height="14"><use xlink:href="#copy"></use></svg> کپی شماره کارت
+              </button>
+            </div>
+          </div>
+
+          <form id="receiptForm">
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">آپلود تصویر رسید پرداخت <span class="text-danger">*</span></label>
+              <label class="upload-box d-block" for="receiptInput">
+                <div id="uploadPrompt">
+                  <svg width="26" height="26" style="color: var(--batenno-primary-dark);"><use xlink:href="#upload"></use></svg>
+                  <p class="small text-muted mb-0 mt-2">برای انتخاب تصویر رسید کلیک کنید (jpg, png)</p>
+                </div>
+                <img id="receiptPreview" class="receipt-preview d-none" alt="پیش‌نمایش رسید">
+              </label>
+              <input class="d-none" type="file" id="receiptInput" accept="image/*" required>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">نام و نام خانوادگی</label>
+                <input type="text" class="form-control" id="buyerName" placeholder="مثلاً: سارا احمدی" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">شماره موبایل</label>
+                <input type="tel" class="form-control" dir="ltr" id="buyerPhone" placeholder="09xxxxxxxxx" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold small">آدرس تحویل سفارش</label>
+                <textarea class="form-control" id="buyerAddress" rows="2" placeholder="استان، شهر، خیابان، پلاک، واحد" required></textarea>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold small">توضیحات (اختیاری)</label>
+                <input type="text" class="form-control" id="orderNote" placeholder="مثلاً: زمان تحویل ترجیحی">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">ثبت رسید و ارسال به پشتیبانی</button>
+            <p class="small text-muted text-center mt-2 mb-0">
+              اگه آپلود رسید برات راحت‌تره، می‌تونی از طریق
+              <a href="https://t.me/atooo7mas" target="_blank">تلگرام</a>
+              هم رسیدت رو برای پشتیبانی بفرستی.
+            </p>
+          </form>
+
+          <!-- Success state -->
+          <div id="receiptSuccess" class="text-center py-4" style="display:none;">
+            <svg width="46" height="46" style="color: var(--batenno-primary);"><use xlink:href="#check-circle"></use></svg>
+            <h6 class="fw-bold mt-3 mb-1">رسید شما با موفقیت ثبت شد</h6>
+            <p class="text-muted small mb-1">شماره پیگیری سفارش: <span id="orderRefNo" class="fw-bold" style="color: var(--batenno-primary-dark);"></span></p>
+            <p class="text-muted small mb-4">پشتیبانی باطنو ظرف حداکثر ۳۰ دقیقه کاری، رسید را بررسی می‌کند و نتیجه را از طریق پیامک اطلاع می‌دهد.</p>
+            <a href="./shop.html" class="btn btn-outline-primary px-4">بازگشت به فروشگاه</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 batenno-footer text-secondary-emphasis" data-bs-theme="dark">
+    <div class="container-lg">
+        <div class="row my-5 justify-content-center">
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer-menu">
+                    <img src="./assets/images/logo.png" width="180" height="90" alt="لوگو باطنو">
+                    <p class="text-secondary-emphasis mt-3 mb-0">میوه و سبزی سالم، ارگانیک و ارزان؛ فقط با ظاهری متفاوت.</p>
+                    <div class="social-links mt-3">
+                        <ul class="d-flex list-unstyled" style="gap: 40px">
+                            <li>
+                                <a href="https://t.me/atooo7mas" class="text-secondary-emphasis" target="_blank">
+                                    <svg width="32" height="32"><use xlink:href="#telegram"></use></svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://ble.ir/masoudi07" class="text-secondary-emphasis" target="_blank">
+                                    <img src="./assets/images/bale-icon.png" width="30" height="30" alt="بله" style="object-fit: cover;">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:info@batenno.ir" class="text-secondary-emphasis">
+                                    <svg width="32" height="32"><use xlink:href="#email"></use></svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-sm-6">
+                <div class="footer-menu">
+                    <h5 class="text-white">باطنو</h5>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item"><a href="./about-fa.html" class="nav-link text-secondary-emphasis">درباره ما</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <div class="footer-menu">
+                    <h5 class="text-white">لینک‌های سریع</h5>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item"><a href="./shop.html" class="nav-link text-secondary-emphasis">فروشگاه</a></li>
+                        <li class="menu-item"><a href="./custom-basket.html" class="nav-link text-secondary-emphasis">سبد نیمه‌سفارشی</a></li>
+                        <li class="menu-item"><a href="./subscription.html" class="nav-link text-secondary-emphasis">اشتراک میوه</a></li>
+                        <li class="menu-item"><a href="./b2b.html" class="nav-link text-secondary-emphasis">مشتریان سازمانی</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <div class="footer-menu">
+                    <h5 class="text-white">خدمات مشتریان</h5>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item"><a href="./faq.html" class="nav-link text-secondary-emphasis">سوالات متداول</a></li>
+                        <li class="menu-item"><a href="./contact.html" class="nav-link text-secondary-emphasis">تماس با ما</a></li>
+                        <li class="menu-item"><a href="./terms.html" class="nav-link text-secondary-emphasis">قوانین و مقررات</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6 copyright">
+                <p>© ۲۰۲۶ باطنو. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/js/cart.js"></script>
+<script>
+  (function () {
+    var B = window.Batenno;
+    var SHIPPING_FLAT = 25000;
+    var FREE_SHIPPING_THRESHOLD = 500000;
+
+    var currentUser = B.getUser();
+    if (currentUser) {
+      document.getElementById('buyerName').value = currentUser.name || '';
+      document.getElementById('buyerPhone').value = currentUser.phone || '';
+    }
+
+    var emptyCart = document.getElementById('emptyCart');
+    var cartContent = document.getElementById('cartContent');
+    var cartItems = document.getElementById('cartItems');
+
+    function render() {
+      var cart = B.getCart();
+      var ids = Object.keys(cart);
+
+      if (ids.length === 0) {
+        emptyCart.style.display = '';
+        cartContent.style.display = 'none';
+        return;
+      }
+      emptyCart.style.display = 'none';
+      cartContent.style.display = '';
+
+      cartItems.innerHTML = ids.map(function (id) {
+        var p = B.PRODUCTS[id];
+        if (!p) return '';
+        var qty = cart[id];
+        return (
+          '<div class="cart-row py-3 d-flex align-items-center gap-3" data-row="' + id + '">' +
+            '<div class="d-flex align-items-center justify-content-center rounded-4 flex-shrink-0 overflow-hidden" style="width:64px;height:64px;background:var(--batenno-cream); font-size:1.8rem;">' + (p.image ? '<img src="' + p.image + '" alt="' + p.name + '" style="width:100%; height:100%; object-fit:cover;">' : p.emoji) + '</div>' +
+            '<div class="flex-grow-1">' +
+              '<div class="small text-muted">' + p.category + '</div>' +
+              '<div class="fw-bold">' + p.name + '</div>' +
+              '<div class="small text-muted">' + B.formatToman(p.price) + ' / عدد</div>' +
+            '</div>' +
+            '<div class="qty-stepper">' +
+              '<button type="button" class="js-dec" data-id="' + id + '">−</button>' +
+              '<span class="fw-semibold" style="min-width:20px; text-align:center;">' + B.toFa(qty) + '</span>' +
+              '<button type="button" class="js-inc" data-id="' + id + '">+</button>' +
+            '</div>' +
+            '<div class="fw-bold text-nowrap" style="min-width:110px; text-align:left; color: var(--batenno-primary-dark);">' + B.formatToman(p.price * qty) + '</div>' +
+            '<button type="button" class="btn btn-sm btn-outline-danger js-remove" data-id="' + id + '" aria-label="حذف">' +
+              '<svg width="14" height="14"><use xlink:href="#trash"></use></svg>' +
+            '</button>' +
+          '</div>'
+        );
+      }).join('');
+
+      var subtotal = B.cartSubtotal();
+      var shipping = subtotal === 0 ? 0 : (subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FLAT);
+      var total = subtotal + shipping;
+
+      document.getElementById('sumSubtotal').textContent = B.formatToman(subtotal);
+      document.getElementById('sumShipping').textContent = shipping === 0 ? 'رایگان' : B.formatToman(shipping);
+      document.getElementById('sumTotal').textContent = B.formatToman(total);
+
+      cartItems.querySelectorAll('.js-inc').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.dataset.id;
+          var cart = B.getCart();
+          B.setQty(id, (cart[id] || 0) + 1);
+          render();
+        });
+      });
+      cartItems.querySelectorAll('.js-dec').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.dataset.id;
+          var cart = B.getCart();
+          B.setQty(id, (cart[id] || 0) - 1);
+          render();
+        });
+      });
+      cartItems.querySelectorAll('.js-remove').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          B.removeFromCart(btn.dataset.id);
+          render();
+        });
+      });
+    }
+
+    document.getElementById('clearCartBtn').addEventListener('click', function () {
+      if (confirm('سبد خرید خالی بشه؟')) {
+        B.clearCart();
+        render();
+      }
+    });
+
+    document.getElementById('copyCardBtn').addEventListener('click', function () {
+      var number = '6037991200011234';
+      var btn = this;
+      function done() {
+        var original = btn.innerHTML;
+        btn.innerHTML = 'کپی شد ✓';
+        setTimeout(function () { btn.innerHTML = original; }, 1500);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(number).then(done).catch(done);
+      } else {
+        done();
+      }
+    });
+
+    // Receipt upload preview
+    var receiptInput = document.getElementById('receiptInput');
+    var receiptPreview = document.getElementById('receiptPreview');
+    var uploadPrompt = document.getElementById('uploadPrompt');
+    receiptInput.addEventListener('change', function () {
+      var file = receiptInput.files && receiptInput.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        receiptPreview.src = e.target.result;
+        receiptPreview.classList.remove('d-none');
+        uploadPrompt.classList.add('d-none');
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Submit receipt: requires login (orders are tied to the account so
+    // they can show up later in "سفارش‌های من"), then the order is saved
+    // to the shared order history and the cart is cleared.
+    document.getElementById('receiptForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!B.getUser()) {
+        alert('برای ثبت سفارش اول باید وارد حساب کاربری‌ت بشی. سبد خریدت دست‌نخورده می‌مونه.');
+        window.location.href = './auth.html';
+        return;
+      }
+
+      if (!receiptInput.files || !receiptInput.files[0]) {
+        alert('لطفاً اول عکس رسید پرداخت رو آپلود کن.');
+        return;
+      }
+
+      var form = document.getElementById('receiptForm');
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var cart = B.getCart();
+      var items = Object.keys(cart).map(function (id) {
+        var p = B.PRODUCTS[id];
+        return p ? { id: id, name: p.name, price: p.price, qty: cart[id] } : null;
+      }).filter(Boolean);
+
+      var subtotal = B.cartSubtotal();
+      var shipping = subtotal === 0 ? 0 : (subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FLAT);
+      var total = subtotal + shipping;
+      var refNo = 'BT-' + Math.floor(10000 + Math.random() * 89999);
+
+      B.addOrder({
+        ref: refNo,
+        createdAt: Date.now(),
+        status: 'در حال بررسی',
+        items: items,
+        subtotal: subtotal,
+        shipping: shipping,
+        total: total,
+        buyerName: document.getElementById('buyerName').value.trim(),
+        buyerPhone: document.getElementById('buyerPhone').value.trim(),
+        buyerAddress: document.getElementById('buyerAddress').value.trim(),
+        note: document.getElementById('orderNote').value.trim(),
+        // فقط اسم فایل رسید نگه داشته می‌شه، نه خودِ عکس — چون localStorage
+        // برای ذخیره‌ی فایل ساخته نشده و حجمش خیلی زود پر می‌شه.
+        receiptFileName: receiptInput.files[0].name
+      });
+
+      document.getElementById('orderRefNo').textContent = refNo;
+      document.getElementById('receiptForm').style.display = 'none';
+      document.getElementById('receiptSuccess').style.display = '';
+      B.clearCart();
+    });
+
+    render();
+  })();
+</script>
+
+</body>
+</html>

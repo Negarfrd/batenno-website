@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <title>اطلاعات محصول | باطنو</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="اطلاعات کامل محصول، قیمت، وزن و امکان افزودن به سبد خرید در باطنو.">
+
+  <link rel="stylesheet" type="text/css" href="./assets/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <style>
+    .qty-stepper{ display:flex; align-items:center; gap:.5rem; }
+    .qty-stepper button{ width:36px; height:36px; border-radius:8px; border:1px solid #e2e2da; background:#fff; line-height:1; font-weight:700; font-size:1.1rem; color: var(--batenno-primary-dark); }
+    .qty-stepper button:hover{ background: var(--batenno-cream); }
+    .qty-stepper span{ min-width:28px; text-align:center; font-weight:700; }
+    .product-media{ display:flex; align-items:center; justify-content:center; border-radius:20px; background: var(--batenno-cream); height:360px; font-size:7rem; }
+    .trust-badge{ background: var(--batenno-cream); border-radius:14px; padding:1rem; text-align:center; }
+  </style>
+</head>
+
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <defs>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="telegram" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05l-2 1.93c-.23.23-.42.42-.82.42"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="email" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4m10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4M7.2 14h9.6a2 2 0 0 0 1.94-1.51l1.65-6.6A1 1 0 0 0 19.42 4H6.21l-.3-1.2A1 1 0 0 0 4.94 2H2v2h2.2l3.02 12.06A1 1 0 0 0 8.19 17h10.3v-2H8.42z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="star" viewBox="0 0 24 24">
+      <path fill="currentColor" d="m12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72l3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41l-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18l-1.1 4.72c-.2.86.73 1.54 1.49 1.08z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="chevron-left" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M15.41 7.41 14 6l-6 6l6 6l1.41-1.41L10.83 12z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg batenno-navbar sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand" href="./index.html">
+      <img src="./assets/images/logo.png" alt="باطنو">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="./index.html">خانه</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./shop.html">فروشگاه</a></li>
+        <li class="nav-item"><a class="nav-link" href="./custom-basket.html">سبد نیمه‌سفارشی</a></li>
+        <li class="nav-item"><a class="nav-link" href="./subscription.html">اشتراک میوه</a></li>
+        <li class="nav-item"><a class="nav-link" href="./b2b.html">مشتریان سازمانی</a></li>
+        <li class="nav-item"><a class="nav-link" href="./about-fa.html">داستان باطنو</a></li>
+        <li class="nav-item"><a class="nav-link" href="./faq.html">سوالات متداول</a></li>
+        <li class="nav-item mt-2 mt-lg-0">
+          <a href="./cart.html" class="btn btn-outline-primary position-relative d-inline-flex align-items-center justify-content-center" style="width:42px;height:42px;padding:0;" aria-label="سبد خرید">
+            <svg width="18" height="18"><use xlink:href="#cart"></use></svg>
+            <span data-cart-badge class="position-absolute badge rounded-pill" style="top:-6px; left:-6px; display:none; background: var(--batenno-primary-dark);">0</span>
+          </a>
+        </li>
+        <li class="nav-item mt-2 mt-lg-0" data-auth-slot>
+          <a href="./auth.html" class="btn btn-primary">ورود / ثبت‌نام</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<section class="py-3 bg-white border-bottom">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0 small">
+        <li class="breadcrumb-item"><a href="./index.html" class="text-muted text-decoration-none">خانه</a></li>
+        <li class="breadcrumb-item"><a href="./shop.html" class="text-muted text-decoration-none">فروشگاه</a></li>
+        <li class="breadcrumb-item active fw-semibold" id="breadcrumbName" aria-current="page">محصول</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- Product not found -->
+<section id="notFoundSection" class="py-5" style="display:none;">
+  <div class="container text-center py-5">
+    <div style="font-size:3rem;">🔍</div>
+    <h5 class="fw-bold mt-3">این محصول پیدا نشد</h5>
+    <p class="text-muted mb-4">ممکن است لینک اشتباه باشد یا محصول از فروشگاه حذف شده باشد.</p>
+    <a href="./shop.html" class="btn btn-primary px-4">بازگشت به فروشگاه</a>
+  </div>
+</section>
+
+<!-- Product detail -->
+<section id="productSection" class="py-5 bg-white">
+  <div class="container">
+    <div class="row g-5">
+
+      <!-- Media -->
+      <div class="col-lg-5">
+        <div class="position-relative">
+          <span id="productBadge" class="badge position-absolute top-0 end-0 m-2" style="background: rgba(15,81,50,0.9); display:none; z-index:2;"></span>
+          <div id="productEmoji" class="product-media"></div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="col-lg-7">
+        <span id="productCategory" class="small text-muted d-block mb-1"></span>
+        <h1 class="fw-bold h3 mb-2" id="productName"></h1>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div id="productStars" class="d-flex align-items-center gap-1"></div>
+          <span class="text-muted small" id="productReviewsCount"></span>
+        </div>
+
+        <div class="d-flex align-items-baseline gap-3 mb-2">
+          <span id="productOldPrice" class="text-decoration-line-through text-muted"></span>
+          <span id="productPrice" class="fw-bold fs-3" style="color: var(--batenno-primary-dark);"></span>
+        </div>
+        <p class="small text-muted mb-4">وزن هر بسته: <span id="productWeight" class="fw-semibold"></span></p>
+
+        <p class="mb-4" id="productDescription" style="line-height:2;"></p>
+
+        <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+          <div class="qty-stepper">
+            <button type="button" id="qtyDec">−</button>
+            <span id="qtyValue">۱</span>
+            <button type="button" id="qtyInc">+</button>
+          </div>
+          <button type="button" id="addToCartBtn" class="btn btn-primary px-4 py-2 d-flex align-items-center gap-2">
+            <svg width="18" height="18"><use xlink:href="#cart"></use></svg>
+            افزودن به سبد خرید
+          </button>
+          <span id="addedNote" class="text-success small fw-semibold" style="display:none;">✓ به سبد خرید اضافه شد</span>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="row g-2">
+          <div class="col-4">
+            <div class="trust-badge">
+              <div style="font-size:1.6rem;">🚚</div>
+              <div class="small fw-semibold mt-1">ارسال سریع</div>
+              <div class="small text-muted">حداکثر ظرف ۲۴ ساعت</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="trust-badge">
+              <div style="font-size:1.6rem;">🛡️</div>
+              <div class="small fw-semibold mt-1">ضمانت بازگشت وجه</div>
+              <div class="small text-muted">در صورت نارضایتی از باطن</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="trust-badge">
+              <div style="font-size:1.6rem;">🌿</div>
+              <div class="small fw-semibold mt-1">بسته‌بندی دوستدار محیط‌زیست</div>
+              <div class="small text-muted">بدون پلاستیک اضافه</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- چرا این محصول ارزان‌تر است؟ -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <h5 class="fw-bold mb-3">چرا این محصول ارزان‌تر است؟</h5>
+        <div class="batenno-story-block">
+          <p class="mb-3" style="line-height:2;">
+            توی باطنو، محصولاتی که فقط به‌خاطر شکل، رنگ یا لکه‌های طبیعی از بازار سنتی کنار گذاشته می‌شن رو مستقیم از کشاورز می‌خریم؛ چون این محصولات از نظر «باطن»، یعنی سلامت، تازگی و ارزش غذایی، هیچ فرقی با محصولات معمولی بازار ندارن. همین موضوع باعث می‌شه بتونیم قیمت رو پایین‌تر از بازار خرده‌فروشی نگه داریم.
+          </p>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">✓ کنترل کیفیت باطن محصول قبل از بسته‌بندی</li>
+            <li class="mb-2">✓ خرید مستقیم از کشاورز، بدون واسطه</li>
+            <li class="mb-0">✓ ضمانت بی‌قیدوشرط بازگشت وجه در صورت فساد درونی</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related products -->
+    <div class="mt-5">
+      <h5 class="fw-bold mb-4">محصولات مشابه</h5>
+      <div class="row g-4" id="relatedGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 batenno-footer text-secondary-emphasis" data-bs-theme="dark">
+    <div class="container-lg">
+        <div class="row my-5 justify-content-center">
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer-menu">
+                    <img src="./assets/images/logo.png" width="180" height="90" alt="لوگو باطنو">
+                    <p class="text-secondary-emphasis mt-3 mb-0">میوه و سبزی سالم، ارگانیک و ارزان؛ فقط با ظاهری متفاوت.</p>
+                    <div class="social-links mt-3">
+                        <ul class="d-flex list-unstyled" style="gap: 40px">
+                            <li>
+                                <a href="https://t.me/atooo7mas" class="text-secondary-emphasis" target="_blank">
+                                    <svg width="32" height="32"><use xlink:href="#telegram"></use></svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://ble.ir/masoudi07" class="text-secondary-emphasis" target="_blank">
+                                    <img src="./assets/images/bale-icon.png" width="30" height="30" alt="بله" style="object-fit: cover;">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:info@batenno.ir" class="text-secondary-emphasis">
+                                    <svg width="32" height="32"><use xlink:href="#email"></use></svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-sm-6">
+                <div class="footer-menu">
+                    <h5 class="text-white">باطنو</h5>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item"><a href="./about-fa.html" class="nav-link text-secondary-emphasis">درباره ما</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <div class="footer-menu">
+                    <h5 class="text-white">لینک‌های سریع</h5>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item"><a href="./shop.html" class="nav-link text-secondary-emphasis">فروشگاه</a></li>
+                        <li class="menu-item"><a href="./custom-basket.html" class="nav-link text-secondary-emphasis">سبد نیمه‌سفارشی</a></li>
+                        <li class="menu-item"><a href="./subscription.html" class="nav-link text-secondary-emphasis">اشتراک میوه</a></li>
+                        <li class="menu-item"><a href="./b2b.html" class="nav-link text-secondary-emphasis">مشتریان سازمانی</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <div class="footer-menu">
+                    <h5 class="text-white">خدمات مشتریان</h5>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item"><a href="./faq.html" class="nav-link text-secondary-emphasis">سوالات متداول</a></li>
+                        <li class="menu-item"><a href="./contact.html" class="nav-link text-secondary-emphasis">تماس با ما</a></li>
+                        <li class="menu-item"><a href="./terms.html" class="nav-link text-secondary-emphasis">قوانین و مقررات</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6 copyright">
+                <p>© ۲۰۲۶ باطنو. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/js/cart.js"></script>
+<script>
+  (function () {
+    var B = window.Batenno;
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get('id') || 'p1';
+    var product = B.PRODUCTS[id];
+
+    if (!product) {
+      document.getElementById('productSection').style.display = 'none';
+      document.getElementById('notFoundSection').style.display = '';
+      return;
+    }
+
+    document.title = product.name + ' | باطنو';
+    document.getElementById('breadcrumbName').textContent = product.name;
+    document.getElementById('productCategory').textContent = product.category;
+    document.getElementById('productName').textContent = product.name;
+    var mediaEl = document.getElementById('productEmoji');
+    if (product.image) {
+      mediaEl.innerHTML = '<img src="' + product.image + '" alt="' + product.name + '" style="width:100%; height:100%; object-fit:cover; border-radius:20px;">';
+    } else {
+      mediaEl.textContent = product.emoji;
+    }
+    document.getElementById('productDescription').textContent = product.description;
+    document.getElementById('productWeight').textContent = product.weight;
+    document.getElementById('productPrice').textContent = B.formatToman(product.price);
+    document.getElementById('productReviewsCount').textContent = '(' + B.toFa(product.reviews) + ' نظر)';
+
+    if (product.oldPrice) {
+      document.getElementById('productOldPrice').textContent = B.formatToman(product.oldPrice);
+    }
+    if (product.badge) {
+      var badgeEl = document.getElementById('productBadge');
+      badgeEl.textContent = product.badge;
+      badgeEl.style.display = '';
+    }
+
+    var starsEl = document.getElementById('productStars');
+    var starsHtml = '';
+    for (var i = 1; i <= 5; i++) {
+      var color = i <= product.rating ? '#F5A623' : '#ddd';
+      starsHtml += '<svg width="16" height="16" style="color:' + color + '"><use xlink:href="#star"></use></svg>';
+    }
+    starsEl.innerHTML = starsHtml;
+
+    // Quantity stepper
+    var qty = 1;
+    var qtyValueEl = document.getElementById('qtyValue');
+    document.getElementById('qtyInc').addEventListener('click', function () {
+      qty = Math.min(20, qty + 1);
+      qtyValueEl.textContent = B.toFa(qty);
+    });
+    document.getElementById('qtyDec').addEventListener('click', function () {
+      qty = Math.max(1, qty - 1);
+      qtyValueEl.textContent = B.toFa(qty);
+    });
+
+    // Add to cart
+    var addedNote = document.getElementById('addedNote');
+    document.getElementById('addToCartBtn').addEventListener('click', function () {
+      B.addToCart(id, qty);
+      addedNote.style.display = '';
+      setTimeout(function () { addedNote.style.display = 'none'; }, 2000);
+    });
+
+    // Related products (same category, excluding current)
+    var relatedGrid = document.getElementById('relatedGrid');
+    var relatedIds = Object.keys(B.PRODUCTS).filter(function (pid) {
+      return pid !== id && B.PRODUCTS[pid].category === product.category;
+    });
+    if (relatedIds.length < 4) {
+      Object.keys(B.PRODUCTS).forEach(function (pid) {
+        if (pid !== id && relatedIds.indexOf(pid) === -1) relatedIds.push(pid);
+      });
+    }
+    relatedIds = relatedIds.slice(0, 4);
+
+    relatedGrid.innerHTML = relatedIds.map(function (pid) {
+      var p = B.PRODUCTS[pid];
+      return (
+              '<div class="col-6 col-md-3">' +
+              '<a href="./product.html?id=' + pid + '" class="batenno-card p-3 h-100 d-flex flex-column text-decoration-none text-dark">' +
+              '<div class="d-flex align-items-center justify-content-center rounded-4 mb-3 overflow-hidden" style="height:120px; background: var(--batenno-cream); font-size:2.8rem;">' + (p.image ? '<img src="' + p.image + '" alt="' + p.name + '" style="width:100%; height:100%; object-fit:cover;">' : p.emoji) + '</div>' +
+              '<span class="small text-muted mb-1">' + p.category + '</span>' +
+              '<h6 class="fw-bold mb-1">' + p.name + '</h6>' +
+              '<div class="fw-bold mt-auto" style="color: var(--batenno-primary-dark);">' + B.formatToman(p.price) + '</div>' +
+              '</a>' +
+              '</div>'
+      );
+    }).join('');
+  })();
+</script>
+
+</body>
+</html>

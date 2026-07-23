@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <title>فروشگاه | باطنو</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="خرید میوه و سبزیجات ارگانیک با قیمتی پایین‌تر از بازار از فروشگاه باطنو.">
+
+  <link rel="stylesheet" type="text/css" href="./assets/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <defs>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="telegram" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05l-2 1.93c-.23.23-.42.42-.82.42"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="email" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4m10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4M7.2 14h9.6a2 2 0 0 0 1.94-1.51l1.65-6.6A1 1 0 0 0 19.42 4H6.21l-.3-1.2A1 1 0 0 0 4.94 2H2v2h2.2l3.02 12.06A1 1 0 0 0 8.19 17h10.3v-2H8.42z"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" id="star" viewBox="0 0 24 24">
+      <path fill="currentColor" d="m12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72l3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41l-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18l-1.1 4.72c-.2.86.73 1.54 1.49 1.08z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg batenno-navbar sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand" href="./index.html">
+      <img src="./assets/images/logo.png" alt="باطنو">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="./index.html">خانه</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./shop.html">فروشگاه</a></li>
+        <li class="nav-item"><a class="nav-link" href="./custom-basket.html">سبد نیمه‌سفارشی</a></li>
+        <li class="nav-item"><a class="nav-link" href="./subscription.html">اشتراک میوه</a></li>
+        <li class="nav-item"><a class="nav-link" href="./b2b.html">مشتریان سازمانی</a></li>
+        <li class="nav-item"><a class="nav-link" href="./about-fa.html">داستان باطنو</a></li>
+        <li class="nav-item"><a class="nav-link" href="./faq.html">سوالات متداول</a></li>
+        <li class="nav-item mt-2 mt-lg-0">
+          <a href="./cart.html" class="btn btn-outline-primary position-relative d-inline-flex align-items-center justify-content-center" style="width:42px;height:42px;padding:0;" aria-label="سبد خرید">
+            <svg width="18" height="18"><use xlink:href="#cart"></use></svg>
+            <span data-cart-badge class="position-absolute badge rounded-pill" style="top:-6px; left:-6px; display:none; background: var(--batenno-primary-dark);">0</span>
+          </a>
+        </li>
+        <li class="nav-item mt-2 mt-lg-0" data-auth-slot>
+          <a href="./auth.html" class="btn btn-primary">ورود / ثبت‌نام</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="batenno-faq-hero">
+  <div class="container">
+    <h1 class="display-6 fw-bold mb-2">فروشگاه باطنو</h1>
+    <p class="mb-0" style="color: rgba(255,255,255,0.9);">میوه و سبزی سالم و ارگانیک، مستقیم از کشاورز</p>
+  </div>
+</section>
+
+<!-- Filters bar -->
+<section class="py-4 bg-white border-bottom">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div class="d-flex flex-wrap gap-2" id="categoryFilters">
+        <button class="btn btn-sm btn-primary rounded-pill px-3" data-filter="all">همه</button>
+        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-filter="fruit">میوه</button>
+        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-filter="veg">سبزیجات</button>
+        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-filter="citrus">مرکبات</button>
+        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-filter="basket">سبد ترکیبی</button>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <label for="sortSelect" class="small text-muted mb-0 text-nowrap">مرتب‌سازی:</label>
+        <select class="form-select form-select-sm" id="sortSelect" style="min-width: 160px;">
+          <option>پرفروش‌ترین</option>
+          <option>ارزان‌ترین</option>
+          <option>گران‌ترین</option>
+          <option>جدیدترین</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Product grid -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row g-4" id="productGrid">
+      <!-- Product 1 -->
+      <div class="col-6 col-md-4 col-lg-3" data-category="fruit" data-id="p1" data-price="95000" data-reviews="124">
+        <div class="batenno-card p-3 h-100 d-flex flex-column">
+          <a href="./product.html?id=p1" class="text-decoration-none text-dark d-block"><div class="mb-3">
+            <div class="d-flex align-items-center justify-content-center rounded-4 overflow-hidden" style="height:140px; background: var(--batenno-cream);"><img src="./assets/images/products/apple.png" alt="سیب گلاب باغی" style="width:100%; height:100%; object-fit:cover;"></div>
+          </div>
+            <span class="small text-muted mb-1">میوه</span>
+            <h6 class="fw-bold mb-1">سیب قرمز</h6></a>
+          <div class="d-flex align-items-center gap-1 mb-2 small text-muted">
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#ddd"><use xlink:href="#star"></use></svg>
+            <span>(۱۲۴)</span>
+          </div>
+          <div class="mt-auto d-flex align-items-center justify-content-between">
+            <div class="fw-bold" style="color: var(--batenno-primary-dark);">۹۵,۰۰۰ تومان</div>
+            <button type="button" class="btn btn-sm btn-primary rounded-circle p-2 js-add-to-cart" aria-label="افزودن به سبد خرید"><svg width="16" height="16"><use xlink:href="#cart"></use></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="col-6 col-md-4 col-lg-3" data-category="veg" data-id="p2" data-price="42000" data-reviews="89">
+        <div class="batenno-card p-3 h-100 d-flex flex-column">
+          <a href="./product.html?id=p2" class="text-decoration-none text-dark d-block"><div class="mb-3">
+            <div class="d-flex align-items-center justify-content-center rounded-4 overflow-hidden" style="height:140px; background: var(--batenno-cream);"><img src="./assets/images/products/carrot.jpg" alt="هویج ارگانیک" style="width:100%; height:100%; object-fit:cover;"></div>
+          </div>
+            <span class="small text-muted mb-1">سبزیجات</span>
+            <h6 class="fw-bold mb-1">هویج ارگانیک</h6></a>
+          <div class="d-flex align-items-center gap-1 mb-2 small text-muted">
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <span>(۸۹)</span>
+          </div>
+          <div class="mt-auto d-flex align-items-center justify-content-between">
+            <div class="fw-bold" style="color: var(--batenno-primary-dark);">۴۲,۰۰۰ تومان</div>
+            <button type="button" class="btn btn-sm btn-primary rounded-circle p-2 js-add-to-cart" aria-label="افزودن به سبد خرید"><svg width="16" height="16"><use xlink:href="#cart"></use></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="col-6 col-md-4 col-lg-3" data-category="citrus" data-id="p3" data-price="102000" data-reviews="203">
+        <div class="batenno-card p-3 h-100 d-flex flex-column">
+          <a href="./product.html?id=p3" class="text-decoration-none text-dark d-block"><div class="position-relative mb-3">
+            <span class="badge position-absolute top-0 end-0 m-2" style="background: rgba(15,81,50,0.9);">۱۵٪ ارزان‌تر</span>
+            <div class="d-flex align-items-center justify-content-center rounded-4 overflow-hidden" style="height:140px; background: var(--batenno-cream);"><img src="./assets/images/products/orange.png" alt="پرتقال" style="width:100%; height:100%; object-fit:cover;"></div>
+          </div>
+            <span class="small text-muted mb-1">مرکبات</span>
+            <h6 class="fw-bold mb-1">پرتقال تامسون</h6></a>
+          <div class="d-flex align-items-center gap-1 mb-2 small text-muted">
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#ddd"><use xlink:href="#star"></use></svg>
+            <span>(۲۰۳)</span>
+          </div>
+          <div class="mt-auto d-flex align-items-center justify-content-between">
+            <div>
+              <span class="text-decoration-line-through text-muted small">۱۲۰,۰۰۰</span>
+              <div class="fw-bold" style="color: var(--batenno-primary-dark);">۱۰۲,۰۰۰ تومان</div>
+            </div>
+            <button type="button" class="btn btn-sm btn-primary rounded-circle p-2 js-add-to-cart" aria-label="افزودن به سبد خرید"><svg width="16" height="16"><use xlink:href="#cart"></use></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="col-6 col-md-4 col-lg-3" data-category="basket" data-id="p4" data-price="149000" data-reviews="67">
+        <div class="batenno-card p-3 h-100 d-flex flex-column">
+          <a href="./custom-basket.html" class="text-decoration-none text-dark d-block"><div class="mb-3">
+            <div class="d-flex align-items-center justify-content-center rounded-4" style="height:140px; background: var(--batenno-cream); font-size: 3.2rem;">🧺</div>
+          </div>
+            <span class="small text-muted mb-1">سبد ترکیبی</span>
+            <h6 class="fw-bold mb-1">سبد نیمه‌سفارشی خانواده</h6></a>
+          <div class="d-flex align-items-center gap-1 mb-2 small text-muted">
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <span>(۶۷)</span>
+          </div>
+          <div class="mt-auto d-flex align-items-center justify-content-between">
+            <div class="fw-bold" style="color: var(--batenno-primary-dark);">از ۱۴۹,۰۰۰ تومان</div>
+            <a href="./custom-basket.html" class="btn btn-sm btn-primary rounded-pill px-3">ساخت سبد</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 (موز) -->
+      <div class="col-6 col-md-4 col-lg-3" data-category="fruit" data-id="p5" data-price="115000" data-reviews="158">
+        <div class="batenno-card p-3 h-100 d-flex flex-column">
+          <a href="./product.html?id=p5" class="text-decoration-none text-dark d-block"><div class="mb-3">
+            <div class="d-flex align-items-center justify-content-center rounded-4 overflow-hidden" style="height:140px; background: var(--batenno-cream);"><img src="./assets/images/products/banana.webp" alt="موز وارداتی" style="width:100%; height:100%; object-fit:cover;"></div>
+          </div>
+            <span class="small text-muted mb-1">میوه</span>
+            <h6 class="fw-bold mb-1">موز وارداتی</h6></a>
+          <div class="d-flex align-items-center gap-1 mb-2 small text-muted">
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#ddd"><use xlink:href="#star"></use></svg>
+            <span>(۱۵۸)</span>
+          </div>
+          <div class="mt-auto d-flex align-items-center justify-content-between">
+            <div class="fw-bold" style="color: var(--batenno-primary-dark);">۱۱۵,۰۰۰ تومان</div>
+            <button type="button" class="btn btn-sm btn-primary rounded-circle p-2 js-add-to-cart" aria-label="افزودن به سبد خرید"><svg width="16" height="16"><use xlink:href="#cart"></use></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 (گوجه‌فرنگی) -->
+      <div class="col-6 col-md-4 col-lg-3" data-category="veg" data-id="p6" data-price="45000" data-reviews="96">
+        <div class="batenno-card p-3 h-100 d-flex flex-column">
+          <a href="./product.html?id=p6" class="text-decoration-none text-dark d-block"><div class="mb-3">
+            <div class="d-flex align-items-center justify-content-center rounded-4 overflow-hidden" style="height:140px; background: var(--batenno-cream);"><img src="./assets/images/products/tomato.png" alt="گوجه‌فرنگی گلخانه‌ای" style="width:100%; height:100%; object-fit:contain;"></div>
+          </div>
+            <span class="small text-muted mb-1">سبزیجات</span>
+            <h6 class="fw-bold mb-1">گوجه‌فرنگی گلخانه‌ای</h6></a>
+          <div class="d-flex align-items-center gap-1 mb-2 small text-muted">
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#ddd"><use xlink:href="#star"></use></svg>
+            <span>(۹۶)</span>
+          </div>
+          <div class="mt-auto d-flex align-items-center justify-content-between">
+            <div class="fw-bold" style="color: var(--batenno-primary-dark);">۴۵,۰۰۰ تومان</div>
+            <button type="button" class="btn btn-sm btn-primary rounded-circle p-2 js-add-to-cart" aria-label="افزودن به سبد خرید"><svg width="16" height="16"><use xlink:href="#cart"></use></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7 (توت‌فرنگی) -->
+      <div class="col-6 col-md-4 col-lg-3" data-category="fruit" data-id="p7" data-price="184000" data-reviews="141">
+        <div class="batenno-card p-3 h-100 d-flex flex-column">
+          <a href="./product.html?id=p7" class="text-decoration-none text-dark d-block"><div class="mb-3">
+            <div class="d-flex align-items-center justify-content-center rounded-4 overflow-hidden" style="height:140px; background: var(--batenno-cream);"><img src="./assets/images/products/strawberry.webp" alt="توت‌فرنگی باغی" style="width:100%; height:100%; object-fit:cover;"></div>
+          </div>
+            <span class="small text-muted mb-1">میوه</span>
+            <h6 class="fw-bold mb-1">توت‌فرنگی باغی</h6></a>
+          <div class="d-flex align-items-center gap-1 mb-2 small text-muted">
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <span>(۱۴۱)</span>
+          </div>
+          <div class="mt-auto d-flex align-items-center justify-content-between">
+            <div class="fw-bold" style="color: var(--batenno-primary-dark);">۱۸۴,۰۰۰ تومان</div>
+            <button type="button" class="btn btn-sm btn-primary rounded-circle p-2 js-add-to-cart" aria-label="افزودن به سبد خرید"><svg width="16" height="16"><use xlink:href="#cart"></use></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="col-6 col-md-4 col-lg-3" data-category="basket" data-id="p8" data-price="98000" data-reviews="219">
+        <div class="batenno-card p-3 h-100 d-flex flex-column">
+          <a href="./product.html?id=p8" class="text-decoration-none text-dark d-block"><div class="position-relative mb-3">
+            <span class="badge position-absolute top-0 end-0 m-2" style="background: rgba(15,81,50,0.9);">پرفروش</span>
+            <div class="d-flex align-items-center justify-content-center rounded-4 overflow-hidden" style="height:140px; background: var(--batenno-cream); font-size: 3.2rem;"><img src="./assets/images/products/veg-basket.jpeg" alt="سبزی" style="width:100%; height:100%; object-fit:cover;"></div>
+          </div>
+            <span class="small text-muted mb-1">سبد ترکیبی</span>
+            <h6 class="fw-bold mb-1">سبد سبزیجات هفتگی</h6></a>
+          <div class="d-flex align-items-center gap-1 mb-2 small text-muted">
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <svg width="14" height="14" style="color:#F5A623"><use xlink:href="#star"></use></svg>
+            <span>(۲۱۹)</span>
+          </div>
+          <div class="mt-auto d-flex align-items-center justify-content-between">
+            <div class="fw-bold" style="color: var(--batenno-primary-dark);">۹۸,۰۰۰ تومان</div>
+            <button type="button" class="btn btn-sm btn-primary rounded-circle p-2 js-add-to-cart" aria-label="افزودن به سبد خرید"><svg width="16" height="16"><use xlink:href="#cart"></use></svg></button>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="text-center mt-5">
+      <button class="btn btn-outline-primary px-4">نمایش محصولات بیشتر</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 batenno-footer text-secondary-emphasis" data-bs-theme="dark">
+  <div class="container-lg">
+    <div class="row my-5 justify-content-center">
+
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="footer-menu">
+          <img src="./assets/images/logo.png" width="180" height="90" alt="لوگو باطنو">
+          <p class="text-secondary-emphasis mt-3 mb-0">میوه و سبزی سالم، ارگانیک و ارزان؛ فقط با ظاهری متفاوت.</p>
+          <div class="social-links mt-3">
+            <ul class="d-flex list-unstyled" style="gap: 40px">
+              <li>
+                <a href="https://t.me/atooo7mas" class="text-secondary-emphasis" target="_blank">
+                  <svg width="32" height="32"><use xlink:href="#telegram"></use></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://ble.ir/masoudi07" class="text-secondary-emphasis" target="_blank">
+                  <img src="./assets/images/bale-icon.png" width="30" height="30" alt="بله" style="object-fit: cover;">
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@batenno.ir" class="text-secondary-emphasis">
+                  <svg width="32" height="32"><use xlink:href="#email"></use></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-6">
+        <div class="footer-menu">
+          <h5 class="text-white">باطنو</h5>
+          <ul class="menu-list list-unstyled">
+            <li class="menu-item"><a href="./about-fa.html" class="nav-link text-secondary-emphasis">درباره ما</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <div class="footer-menu">
+          <h5 class="text-white">لینک‌های سریع</h5>
+          <ul class="menu-list list-unstyled">
+            <li class="menu-item"><a href="./shop.html" class="nav-link text-secondary-emphasis">فروشگاه</a></li>
+            <li class="menu-item"><a href="./custom-basket.html" class="nav-link text-secondary-emphasis">سبد نیمه‌سفارشی</a></li>
+            <li class="menu-item"><a href="./subscription.html" class="nav-link text-secondary-emphasis">اشتراک میوه</a></li>
+            <li class="menu-item"><a href="./b2b.html" class="nav-link text-secondary-emphasis">مشتریان سازمانی</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <div class="footer-menu">
+          <h5 class="text-white">خدمات مشتریان</h5>
+          <ul class="menu-list list-unstyled">
+            <li class="menu-item"><a href="./faq.html" class="nav-link text-secondary-emphasis">سوالات متداول</a></li>
+            <li class="menu-item"><a href="./contact.html" class="nav-link text-secondary-emphasis">تماس با ما</a></li>
+            <li class="menu-item"><a href="./terms.html" class="nav-link text-secondary-emphasis">قوانین و مقررات</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-6 copyright">
+        <p>© ۲۰۲۶ باطنو. تمامی حقوق محفوظ است.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Cart toast -->
+<div class="position-fixed bottom-0 start-50 translate-middle-x mb-4" style="z-index: 1080;">
+  <div id="cartToast" class="d-flex align-items-center gap-2 px-4 py-2 rounded-pill shadow"
+       style="background: var(--batenno-primary-dark); color:#fff; opacity:0; transform: translateY(10px); transition: opacity .25s ease, transform .25s ease; pointer-events:none;">
+    <svg width="16" height="16"><use xlink:href="#cart"></use></svg>
+    <span id="cartToastText">به سبد خرید اضافه شد</span>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/js/cart.js"></script>
+<script>
+  (function () {
+    var filterButtons = document.querySelectorAll('#categoryFilters button');
+    var productGrid = document.getElementById('productGrid');
+    var sortSelect = document.getElementById('sortSelect');
+
+    function getCards() { return Array.prototype.slice.call(productGrid.children); }
+
+    // --- Category filter ---
+    var currentFilter = 'all';
+    filterButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        filterButtons.forEach(function (b) { b.classList.remove('btn-primary'); b.classList.add('btn-outline-primary'); });
+        btn.classList.remove('btn-outline-primary'); btn.classList.add('btn-primary');
+        currentFilter = btn.dataset.filter;
+        applyFilter();
+      });
+    });
+
+    function applyFilter() {
+      getCards().forEach(function (card) {
+        var match = currentFilter === 'all' || card.dataset.category === currentFilter;
+        card.style.display = match ? '' : 'none';
+      });
+    }
+
+    // --- Sort ---
+    var sortMap = {
+      'پرفروش‌ترین': function (a, b) { return Number(b.dataset.reviews) - Number(a.dataset.reviews); },
+      'ارزان‌ترین': function (a, b) { return Number(a.dataset.price) - Number(b.dataset.price); },
+      'گران‌ترین': function (a, b) { return Number(b.dataset.price) - Number(a.dataset.price); },
+      'جدیدترین': function (a, b) { return getCards().indexOf(b) - getCards().indexOf(a); }
+    };
+
+    if (sortSelect) {
+      var originalOrder = getCards();
+      sortSelect.addEventListener('change', function () {
+        var label = sortSelect.value;
+        var cards = getCards();
+        if (label === 'جدیدترین') {
+          originalOrder.slice().reverse().forEach(function (c) { productGrid.appendChild(c); });
+        } else {
+          var cmp = sortMap[label] || sortMap['پرفروش‌ترین'];
+          cards.sort(cmp).forEach(function (c) { productGrid.appendChild(c); });
+        }
+        applyFilter();
+      });
+    }
+
+    // --- Add to cart ---
+    var toast = document.getElementById('cartToast');
+    var toastText = document.getElementById('cartToastText');
+    var toastTimer = null;
+
+    function showToast(text) {
+      toastText.textContent = text;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+      }, 1800);
+    }
+
+    document.querySelectorAll('.js-add-to-cart').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = btn.closest('[data-id]');
+        if (!card) return;
+        var id = card.dataset.id;
+        var product = window.Batenno.PRODUCTS[id];
+        window.Batenno.addToCart(id, 1);
+        showToast((product ? product.name : 'محصول') + ' به سبد خرید اضافه شد');
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
